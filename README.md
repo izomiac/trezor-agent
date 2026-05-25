@@ -1,3 +1,5 @@
+This fork changes the default SSH curve to ED25519 and adds age-plugin-onlykey.  I probably broke Trezor age support in the process, and perhaps introduced some STDOUT spam when using RSA keys on the OnlyKey.  Use at your own risk.
+
 # Hardware-based SSH/GPG/age agent
 
 [![Build](https://github.com/romanz/trezor-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/romanz/trezor-agent/actions)

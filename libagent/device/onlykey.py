@@ -265,8 +265,7 @@ class OnlyKey(interface.Device):
         assert len(d) == 32
         b1, b2, b3 = get_button(self, d[0]), get_button(self, d[15]), get_button(self, d[31])
         log.info('Key Slot =%s', this_slot_id)
-        print('Enter the 3 digit challenge code on OnlyKey to authorize '+identity.to_string(), file=sys.stderr, flush=True)
-        print('{} {} {}'.format(b1, b2, b3), file=sys.stderr, flush=True)
+        print('Enter {} {} {} on OnlyKey to authorize '.format(b1, b2, b3)+identity.to_string()+'\r', file=sys.stderr, flush=True)
         t_end = time.time() + 22
         log.info('Requesting challenge code from OnlyKey: {} {} {}'.format(b1, b2, b3))
         if curve_name != 'rsa':
@@ -352,9 +351,8 @@ class OnlyKey(interface.Device):
         b1, b2, b3 = get_button(self, d[0]), get_button(self, d[15]), get_button(self, d[31])
         self.ok.send_large_message2(msg=self._defs.Message.OKDECRYPT, payload=raw_message,
                                     slot_id=this_slot_id)
-        print('Enter the 3 digit challenge code on OnlyKey to authorize ' + identity.to_string(), file=sys.stderr, flush=True)
-        print('{} {} {}'.format(b1, b2, b3), file=sys.stderr, flush=True)
-        msg = f'Enter the 3 digit challenge code on OnlyKey to authorize ' + identity.to_string() + '\n{} {} {}'.format(b1, b2, b3)
+        msg = 'Enter {} {} {} on OnlyKey to authorize '.format(b1, b2, b3)+identity.to_string()+'\r'
+        print(msg, file=sys.stderr, flush=True)
         send(f'-> msg\n{base64_encode(msg.encode())}\n')
         log.info('Requesting challenge code from OnlyKey: {} {} {}'.format(b1, b2, b3))
         t_end = time.time() + 22
